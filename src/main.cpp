@@ -2346,7 +2346,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 	if (block.GetHash() == chainparams.GetConsensus().hashGenesisBlock) {
 		if (!fJustCheck)
 			view.SetBestBlock(pindex->GetBlockHash());
-		return true;
+//		return true;
 	}
 
 	bool fScriptChecks = true;

@@ -11,7 +11,7 @@
 #include "utilstrencodings.h"
 
 #include <assert.h>
-
+#include <iostream>
 #include <boost/assign/list_of.hpp>
 
 #include "chainparamsseeds.h"
@@ -53,7 +53,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
     const char* pszTimestamp = "bc1c914c79e3612d5569d3b980e089edb016536e26f54791f3001206456da0d1";
 
     //const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
-    const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
+    const CScript genesisOutputScript = CScript() << ParseHex("046470B7A5D5409889C1FF72D598629F3A8E5155886ABA054A811028753A51B867A7D5F2C3746DB1236BEB29ADE8827350EB66424E070BE1D2D6207369A3B35591") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -118,10 +118,14 @@ public:
         nDefaultPort = 9691;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1483501153, 1, 0x207fffff, 1, 50 * COIN); 
+        genesis = CreateGenesisBlock(1570481855, 1, 0x207fffff, 1, 7778742049 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0xc05fc63e3800e1067bc03af8874bdbc14d610ec0e9b6de8835d07366a8e5a403"));
-        assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
+        std::cout << "Genesis hash1:" << uint256S("0xc63566ecc5b4fa3e5b0accf7860251705048b19d71ef2c40af8f636369d1ebab").ToString() << "\n";
+        std::cout << "Genesis hash2:" << consensus.hashGenesisBlock.ToString() << "\n";
+        std::cout << "Merkle hash1: " << genesis.hashMerkleRoot.ToString() << "\n";
+        std::cout << "Merkle hash2: " << uint256S("0x1474a7deac250835ca58307ac4d91b2bf7b9dcfb2c71d6b765561e90c190d87e").ToString() << "\n";
+        assert(consensus.hashGenesisBlock == uint256S("0xc63566ecc5b4fa3e5b0accf7860251705048b19d71ef2c40af8f636369d1ebab"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1474a7deac250835ca58307ac4d91b2bf7b9dcfb2c71d6b765561e90c190d87e"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("ducatusdns.com", "dnsseed.ducatusdns.com", true));

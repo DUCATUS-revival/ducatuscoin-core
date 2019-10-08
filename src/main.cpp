@@ -2343,11 +2343,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
 	// Special case for the genesis block, skipping connection of its transactions
 	// (its coinbase is unspendable)
-	if (block.GetHash() == chainparams.GetConsensus().hashGenesisBlock) {
-		if (!fJustCheck)
-			view.SetBestBlock(pindex->GetBlockHash());
+//	if (block.GetHash() == chainparams.GetConsensus().hashGenesisBlock) {
+//		if (!fJustCheck)
+//			view.SetBestBlock(pindex->GetBlockHash());
 //		return true;
-	}
+//	}
 
 	bool fScriptChecks = true;
 	if (fCheckpointsEnabled) {

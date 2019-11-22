@@ -78,13 +78,13 @@ public:
         consensus.nMajorityWindow = 1000;
         consensus.BIP34Height = 710000;
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
-	consensus.nPowTargetTimespan = 10.5 * 24 * 60 * 60; // 10.5 days
+        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+	consensus.nPowTargetTimespan = 1 * 1 * 16 * 60; // 16 minutes
 	consensus.nPowTargetSpacing = 1 * 60; // 1 minute
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 11340; // 75% of 15120
-        consensus.nMinerConfirmationWindow = 15120; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 12; // 75% of 16
+        consensus.nMinerConfirmationWindow = 16; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -118,7 +118,7 @@ public:
         nDefaultPort = 9691;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1483501153, 1, 0x207fffff, 1, 50 * COIN); 
+        genesis = CreateGenesisBlock(1483501153, 1, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0xc05fc63e3800e1067bc03af8874bdbc14d610ec0e9b6de8835d07366a8e5a403"));
         assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
@@ -317,7 +317,7 @@ class CRegTestParams : public CChainParams {
 			fMiningRequiresPeers = false;
 			fDefaultConsistencyChecks = true;
 			fRequireStandard = false;
-			fMineBlocksOnDemand = true; 
+			fMineBlocksOnDemand = true;
 			fTestnetToBeDeprecatedFieldRPC = false;
 
 			checkpointData = (CCheckpointData){
